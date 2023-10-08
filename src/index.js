@@ -1,21 +1,39 @@
 require('dotenv').config()
 const PORT = process.env.PORT || 5000;
 const express = require('express');
+const cors = require('cors');
+const corsOptions = require('./config/corsOptions');
 
 const usersRouters = require('./routes/users');
+const garduRouters = require('./routes/gardu');
+const towergroupRouters = require('./routes/towergroup');
+const towerRouters = require('./routes/tower');
+const dokumenRouters = require('./routes/dokumen');
+const dokumentowerRouters = require('./routes/dokumentower');
+const dokumentowerpostRouters = require('./routes/dokumentowerpost');
 const middlewareLogRequest = require('./middleware/log');
 const upload = require('./middleware/multer');
 
 const app = express();
+// Cross Origin Resource Sharing
+app.use(cors(corsOptions));
 
 app.use(middlewareLogRequest);
 app.use(express.json());
 app.use('/assets',express.static('public/images'));
 
+app.use('/gardu', garduRouters);
+app.use('/towergroup', towergroupRouters);
+app.use('/tower', towerRouters);
+app.use('/dokumen', dokumenRouters);
+app.use('/dokumentower', dokumentowerRouters);
+app.use('/dokumentowerpost', dokumentowerpostRouters);
 app.use('/users', usersRouters);
 app.post('/upload', upload.single('photo'), (req, res) => {
+    console.log(req.file)
+    console.log(req.body)
     res.json({
-        message: 'Upload berhasil'
+        message: 'data berhasil disimpan'
     })
 });
 

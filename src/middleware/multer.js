@@ -6,10 +6,12 @@ const storage = multer.diskStorage({
         cb(null, 'public/images');        
     },
     filename: (req, file, cb) => {
-        const timeStamp = new Date().getTime();
-        const originalname = file.originalname;
+        const nm = req.body.title;
+        const wkt = req.body.waktu;
+        // const timeStamp = new Date().getTime();
+        // const originalname = file.originalname;
 
-        cb(null, `${timeStamp}-${originalname}`);
+        cb(null, `${nm}-${wkt}.jpg`);
     }    
 });
 
