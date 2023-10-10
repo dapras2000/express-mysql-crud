@@ -1,6 +1,7 @@
 require('dotenv').config()
 const PORT = process.env.PORT || 5000;
 const express = require('express');
+const path = require('path');
 const cors = require('cors');
 const corsOptions = require('./config/corsOptions');
 
@@ -30,8 +31,8 @@ app.use('/dokumentower', dokumentowerRouters);
 app.use('/dokumentowerpost', dokumentowerpostRouters);
 app.use('/users', usersRouters);
 app.post('/upload', upload.single('photo'), (req, res) => {
-    console.log(req.file)
-    console.log(req.body)
+    // console.log(req.file)
+    // console.log(req.body)
     res.json({
         message: 'data berhasil disimpan'
     })

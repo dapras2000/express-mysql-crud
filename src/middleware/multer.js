@@ -11,7 +11,7 @@ const storage = multer.diskStorage({
         // const timeStamp = new Date().getTime();
         // const originalname = file.originalname;
 
-        cb(null, `${nm}-${wkt}.jpg`);
+        cb(null, `${nm}-${wkt}.pdf`);
     }    
 });
 
